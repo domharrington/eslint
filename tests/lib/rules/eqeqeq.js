@@ -1,6 +1,8 @@
 /**
  * @fileoverview Tests for eqeqeq rule.
  * @author Nicholas C. Zakas
+ * @copyright 2013 Matt DuVall. All rights reserved.
+ * See LICENSE file in root directory for full license.
  */
 
 "use strict";
@@ -32,16 +34,16 @@ ruleTester.run("eqeqeq", rule, {
         { code: "a == null", options: ["allow-null"] }
     ],
     invalid: [
-        { code: "a == b", errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
-        { code: "a != b", errors: [{ message: "Expected '!==' and instead saw '!='.", type: "BinaryExpression"}] },
-        { code: "true == 1", options: ["smart"], errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
-        { code: "0 != '1'", options: ["smart"], errors: [{ message: "Expected '!==' and instead saw '!='.", type: "BinaryExpression"}] },
-        { code: "'wee' == /wee/", options: ["smart"], errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
-        { code: "typeof a == 'number'", options: ["allow-null"], errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
-        { code: "'string' != typeof a", options: ["allow-null"], errors: [{ message: "Expected '!==' and instead saw '!='.", type: "BinaryExpression"}] },
-        { code: "'hello' != 'world'", options: ["allow-null"], errors: [{ message: "Expected '!==' and instead saw '!='.", type: "BinaryExpression"}] },
-        { code: "2 == 3", options: ["allow-null"], errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
-        { code: "true == true", options: ["allow-null"], errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
-        { code: "a\n==\nb", errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression", line: 2 }] }
+        { code: "a == b", output: "a === b", errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
+        { code: "a != b", output: "a !== b", errors: [{ message: "Expected '!==' and instead saw '!='.", type: "BinaryExpression"}] },
+        { code: "true == 1", output: "true === 1", options: ["smart"], errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
+        { code: "0 != '1'", output: "0 !== '1'", options: ["smart"], errors: [{ message: "Expected '!==' and instead saw '!='.", type: "BinaryExpression"}] },
+        { code: "'wee' == /wee/", output: "'wee' === /wee/", options: ["smart"], errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
+        { code: "typeof a == 'number'", output: "typeof a === 'number'", options: ["allow-null"], errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
+        { code: "'string' != typeof a", output: "'string' !== typeof a", options: ["allow-null"], errors: [{ message: "Expected '!==' and instead saw '!='.", type: "BinaryExpression"}] },
+        { code: "'hello' != 'world'", output: "'hello' !== 'world'", options: ["allow-null"], errors: [{ message: "Expected '!==' and instead saw '!='.", type: "BinaryExpression"}] },
+        { code: "2 == 3", output: "2 === 3", options: ["allow-null"], errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
+        { code: "true == true", output: "true === true", options: ["allow-null"], errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression"}] },
+        { code: "a\n==\nb", output: "a\n===\nb", errors: [{ message: "Expected '===' and instead saw '=='.", type: "BinaryExpression", line: 2 }] }
     ]
 });
